@@ -1,12 +1,24 @@
 
 import './App.css';
-import Todos from './features/todos/Todos';
+import Posts from './features/posts/Posts';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import ViewPost from './features/posts/ViewPost';
+import NewPost from './features/posts/NewPost';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Todos />
+        
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" >
+              <Route index element={<Posts />}/>
+              <Route path=":postId" element={<ViewPost />} />
+              <Route path="new" element={<NewPost />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
         
       </header>
     </div>
