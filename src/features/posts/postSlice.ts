@@ -22,7 +22,9 @@ const initialState: PostState = {
     postDetails: null
 }
 
-export const fetchAllPosts = createAsyncThunk('posts/fetchAllPosts', async () => {
+export const fetchAllPosts = createAsyncThunk('posts/fetchAllPosts', async (_, thunkApi) => {
+    const state = thunkApi.getState() as RootState;
+    console.log(state.auth.access_token)
 // https://jsonplaceholder.typicode.com/posts
     const req = await axios.get('https://jsonplaceholder.typicode.com/posts');
     return req.data;

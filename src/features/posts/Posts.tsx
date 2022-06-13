@@ -1,11 +1,13 @@
 import React, { useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
+import { selectUID } from '../auth/authSlice'
 import { deletePostById, fetchAllPosts, selectPosts, selectStatus } from './postSlice'
 
 type Props = {}
 
 const Posts = (props: Props) => {
+    const selectUid = useAppSelector(selectUID);
     const dispatch = useAppDispatch();
     const reqStatus = useAppSelector(selectStatus);
     useEffect(() => {
@@ -21,6 +23,9 @@ const Posts = (props: Props) => {
     }}>X</button>  </li>)
   return (
     <div>Posts
+      <p>
+        User ID is: { selectUid }
+      </p>
       <Link to="new"> New Post </Link>
       
        <ul>{list}</ul> </div>
